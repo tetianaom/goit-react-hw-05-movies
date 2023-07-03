@@ -1,5 +1,6 @@
 import { FiSearch } from 'react-icons/fi';
 import { useState } from 'react';
+import { Wrapper, IconSearchBtn, Input } from './SearchForm.styled';
 
 export const SearchForm = ({ onSubmit }) => {
   const [search, setSearch] = useState('');
@@ -15,11 +16,11 @@ export const SearchForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label type="submit">
+    <Wrapper onSubmit={handleSubmit}>
+      <IconSearchBtn type="submit">
         <FiSearch size="16px" />
-      </label>
-      <input type="text" value={search} onChange={handleChange} />
-    </form>
+      </IconSearchBtn>
+      <Input type="text" value={search} onChange={handleChange} />
+    </Wrapper>
   );
 };

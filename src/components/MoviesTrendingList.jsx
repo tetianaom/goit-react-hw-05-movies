@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { MovieList, MovieItem} from './MoviesTrendingList.styled';
 
 export const MoviesTrendingList = ({ movies }) => {
   const location = useLocation();
@@ -6,17 +7,17 @@ export const MoviesTrendingList = ({ movies }) => {
   return (
     <>
       <h2>Trending today</h2>
-      <ul>
+      <MovieList>
         {movies.map(({ id, title }) => {
           return (
-            <li key={id}>
+            <MovieItem key={id}>
               <Link to={`movies/${id}`} state={{ from: location }}>
                 {title}
               </Link>
-            </li>
+            </MovieItem>
           );
         })}
-      </ul>
+      </MovieList>
     </>
   );
 };

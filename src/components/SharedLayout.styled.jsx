@@ -2,19 +2,16 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
-  max-width: 960px;
-  margin: 0 auto;
+  max-width: 1200px;
   padding: 0 16px;
+  margin: 0 auto;
 `;
 
 export const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px 0;
+  padding: 20px 0;
   margin-bottom: 16px;
-  border-bottom: 1px solid black;
+  box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
 
   > nav {
     display: flex;
@@ -35,6 +32,6 @@ export const Link = styled(NavLink)`
 
   &.active {
     color: white;
-    background-color: orangered;
+    background-color: #4d5ae5;
   }
 `;

@@ -9,15 +9,13 @@ export const useFetchSearchForm = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const query = searchParams.get('query');
-    if (!query) return;
-
+    const queryString = searchParams.get('query') ?? '';
     const fetchMovies = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        const moviesData = await fetchMovieByName(query);
+        const moviesData = await fetchMovieByName(queryString);
 
         setMovies(moviesData.results);
       } catch (error) {
@@ -30,7 +28,12 @@ export const useFetchSearchForm = () => {
   }, [searchParams]);
 
   const handleChangeSearchParams = query => {
-    setSearchParams({ query });
+    if (query === '') {
+      return setSearchParams({});
+    }
+
+    setSearchParams({ query: query });
   };
+
   return { movies, loading, error, handleChangeSearchParams };
 };

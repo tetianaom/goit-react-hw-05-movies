@@ -1,10 +1,13 @@
-import { Link, Outlet } from 'react-router-dom';
+import { useRef, Suspense } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useFetchMovie } from 'hooks/useFetchMovie';
 import { Movie } from 'components/Movie';
-import { useLocation } from 'react-router-dom';
 import { Loader } from 'components/Loader/Loader';
+import { Container } from 'components/SharedLayout.styled';
+import { BackLink } from 'components/BackLink';
+import { AdditionalList } from 'components/Movie.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movie, loading, error } = useFetchMovie();
   const {
     id,
@@ -17,13 +20,11 @@ export const MovieDetails = () => {
   } = movie ?? {};
 
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
 
   return (
-    <div>
-      {/* <Section>
-      <Container> */}
-      <Link to={backLinkHref}>Go Back</Link>
+    <Container>
+      <BackLink to={backLinkLocationRef.current}>Go Back</BackLink>
       {movie && (
         <Movie
           title={original_title}
@@ -37,14 +38,17 @@ export const MovieDetails = () => {
       )}
       {loading && <Loader />}
       {error && <p>{error}</p>}
-      <ul>
-        Additional information
+      <hr />
+      <AdditionalList>
+        <h2>Additional information</h2>
         <Link to={`credits`}>Cast</Link>
         <Link to={`reviews`}>Reviews</Link>
-      </ul>
-      <Outlet />
-      {/* </Container>
-    </Section> */}
-    </div>
+      </AdditionalList>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
+    </Container>
   );
 };
+
+export default MovieDetails;

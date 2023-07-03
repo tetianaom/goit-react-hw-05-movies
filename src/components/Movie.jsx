@@ -1,3 +1,5 @@
+import { MovieWrapper, MovieTitle } from './Movie.styled';
+
 export const Movie = ({
   id,
   title,
@@ -7,24 +9,30 @@ export const Movie = ({
   vote_average,
   genres,
 }) => {
+  const imgUrl = backdrop_path
+    ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
+    : 'https://via.placeholder.com/500x280';
+
   return (
-    <div>
+    <MovieWrapper>
       <div>
-        <img
-          src={`https://image.tmdb.org/t/p/w200/${backdrop_path}`}
-          alt={title}
-        />
+        <img src={imgUrl} alt={title} />
       </div>
-      <h1>Movie details - {title}</h1>
-      <p>({release_date})</p>
-      <h2>Overview</h2>
-      <p>{overview}</p>
-      <p>{vote_average}</p>
-      <p>
-        {genres.map(genre => (
-          <span>{genre.name} </span>
-        ))}
-      </p>
-    </div>
+      <div>
+        <MovieTitle>
+          {title}
+          <span> ({release_date.slice(0, 4)})</span>
+        </MovieTitle>
+        <p>User score: {Math.round(vote_average * 10)}%</p>
+        <h3>Overview</h3>
+        <p>{overview}</p>
+        <h3>Genres</h3>
+        <p>
+          {genres.map(genre => (
+            <span>{genre.name} </span>
+          ))}
+        </p>
+      </div>
+    </MovieWrapper>
   );
 };

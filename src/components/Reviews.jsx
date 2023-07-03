@@ -1,9 +1,10 @@
 import { useFetchReviews } from 'hooks/useFetchReviews';
 import { Loader } from './Loader/Loader';
 
-export const Reviews = () => {
+const Reviews = () => {
   const { reviews, loading, error } = useFetchReviews();
-  if (!reviews) {
+
+  if (!reviews || !reviews.length) {
     return <p>We don`t have any reviews for this movie.</p>;
   }
 
@@ -24,3 +25,5 @@ export const Reviews = () => {
     </>
   );
 };
+
+export default Reviews;

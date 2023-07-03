@@ -16,7 +16,6 @@ export const useFetchReviews = () => {
         setError(null);
 
         const reviewsData = await fetchMovieReviews(movieId);
-        console.log(reviewsData);
 
         setReviews(reviewsData.results);
       } catch (error) {
