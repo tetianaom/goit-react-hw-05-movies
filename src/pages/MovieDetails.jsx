@@ -1,11 +1,11 @@
 import { useRef, Suspense } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useFetchMovie } from 'hooks/useFetchMovie';
-import { Movie } from 'components/Movie';
+import { Movie } from 'components/Movie/Movie';
 import { Loader } from 'components/Loader/Loader';
-import { Container } from 'components/SharedLayout.styled';
-import { BackLink } from 'components/BackLink';
-import { AdditionalList } from 'components/Movie.styled';
+import { Container } from 'components/SharedLayout/SharedLayout.styled';
+import { BackLink } from 'components/BackLink/BackLink';
+import { AdditionalList } from 'components/Movie/Movie.styled';
 
 const MovieDetails = () => {
   const { movie, loading, error } = useFetchMovie();

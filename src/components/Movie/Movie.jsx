@@ -14,7 +14,7 @@ export const Movie = ({
     : 'https://via.placeholder.com/500x280';
 
   return (
-    <MovieWrapper>
+    <MovieWrapper key={id}>
       <div>
         <img src={imgUrl} alt={title} />
       </div>

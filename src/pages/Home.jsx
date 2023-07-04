@@ -1,7 +1,7 @@
 import { useFetchTrendingMovies } from 'hooks/useFetchTrendingMovies';
-import { MoviesTrendingList } from 'components/MoviesTrendingList';
+import { MoviesTrendingList } from 'components/MoviesTrendingList/MoviesTrendingList';
 import { Loader } from 'components/Loader/Loader';
-import { Container } from 'components/SharedLayout.styled';
+import { Container } from 'components/SharedLayout/SharedLayout.styled';
 
 export const Home = () => {
   const { movies, loading, error } = useFetchTrendingMovies();
